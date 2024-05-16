@@ -1,7 +1,10 @@
 package com.hemanth.cloudVendor.controller;
 
 import com.hemanth.cloudVendor.model.CloudVendor;
+import com.hemanth.cloudVendor.response.ResponseHandler;
 import com.hemanth.cloudVendor.service.CloudVendorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +19,12 @@ public class CloudVendorController {
 
 
     // Read Specific Cloud Vendor Details from DataBase
-    @GetMapping("{VendorId}")
-    public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId){
-        return cloudVendorService.getCloudVendor(vendorId);
+    @GetMapping("{vendorId}")
+    public ResponseEntity<Object> getCloudVendorDetails(@PathVariable("vendorId") String vendorId){
+        return ResponseHandler.responseBuilder("Requested Vendor Details are given here", HttpStatus.OK,cloudVendorService.getCloudVendor(vendorId));
+
     }
+
     // Read All Cloud Vendor Details from DataBase
     @GetMapping()
     public List<CloudVendor> getAllCloudVendorDetails(){

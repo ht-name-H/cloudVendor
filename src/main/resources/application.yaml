@@ -4,5 +4,9 @@ spring:
     username: root
     password: 2233
 
-    #jpa settings
-    jpa.hibernate.ddl_auto: create
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl_auto: create
